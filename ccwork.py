@@ -37,16 +37,22 @@ class CribbageCalc:
         verify = input("Count hand? Y or N: ")
         
         if verify == 'Y' or verify == 'y':
-            # Define score 
+            # Define score as int to track score
             score = 0
+            # Define hand_val to track string values to convert to int (J, Q, K)
             hand_val = []
+            # Define n as int for iteration in hand
             n = 0
             for i in range(len(hand)):
+                # For each card in hand, check value if type is a string
                 value = hand[n][0]
                 if value == 'J' or value == 'Q' or value == 'K':
+                    # If value is a letter, operate on value 10
                     hand_val.append(10)
                 else:
+                    # Otherwise, convert the value to int
                     hand_val.append(int(value))
+                # Update n to operate on the next card in the next loop
                 n += 1
 
             # Define scorecard as a list. fifteens is a number that counts how many combinations equal fifteen
@@ -57,9 +63,9 @@ class CribbageCalc:
             # For every value added to scorecard (added per fifteen found), add two to the score
             for i in range(len(scorecard)):
                 score += 2
-        else: 
-            print('Done') 
+        else:
+            print('Done')
 
-        print(score)   
+        print(score)
 
 CribbageCalc.calculate()
