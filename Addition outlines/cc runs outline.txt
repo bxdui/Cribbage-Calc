@@ -1,0 +1,13 @@
+Adding runs to the Cribbage Calc
+--------------------------------
+4
+
+IF three cards exist in ascending order (increments of 1), add 3 to the score
+
+IF four cards exist in ascending order (increments of 1), add 4 to the score
+
+IF all five cards exist in ascending order (inrements of 1), add 5 to the score
+
+DOUBLE RUNS:
+
+IF two separate instances of runs exist, count each independently and add their respective scores to the score

@@ -1,0 +1,5 @@
+Adding flush counting to Cribbage Calc
+--------------------------------------
+3
+
+IF all suits are the same (all four hand OR all four hand + flipup ONLY. Make sure you can't score with three same-suit in hand and same suit in flipup), add score for how many in flush: 4 or 5

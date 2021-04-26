@@ -1,0 +1,9 @@
+Adding pairs to Cribbage Calc
+-----------------------------
+1
+
+IF there are two cards with the same value, add 2 to the score
+
+IF there are three cards with the same value, add 6 to the score
+
+IF there are four cards with the same value, add 12 to the score

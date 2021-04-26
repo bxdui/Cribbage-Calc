@@ -1,0 +1,9 @@
+Adding flipup card to Cribbage Calc
+-----------------------------------
+2
+
+In effect, add an extra card to the hand (quantity + 1) to be factored in fifteens
+
+IF value = "J", add 2 points to score
+
+IF flipup card suit matches a Jack's suit in your hand, add 1 point to score
