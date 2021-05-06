@@ -3,6 +3,7 @@ import itertools
 import collections
 
 # Goals: start card, nibs/nobs, easier input for pre-determined hand, flushes, runs, pairs/multiples
+# Convert hand to dictionary format, including full text for suits and face names. Use full text to denote suits and values
 # Big-time challenges: optimal peg counting factoring multiple players, percentage likelihood of pre-defined crib (may require complete overhaul)
 
 class CribbageCalc:
@@ -12,10 +13,9 @@ class CribbageCalc:
             values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
             deck = [[v, s] for s in suits for v in values]
             hand = []
-            quantity = 5
             hand_len = len(hand)
 
-            while hand_len < quantity:
+            while hand_len < 5:
                 card = deck[random.randint(0,51)]
                 if card not in hand:
                     hand.append(card)
@@ -25,6 +25,7 @@ class CribbageCalc:
             count(hand)
 
         def count(hand):
+            # Convert face cards to 10
             print('Calculating score...')
             score = 0
             hand_val = []
@@ -36,14 +37,17 @@ class CribbageCalc:
                 else:
                     hand_val.append(int(value))
                 n2 += 1
+            print(hand_val)
 
+            # Find fifteens
             scorecard = [fifteens for i in range(len(hand_val) + 1) for fifteens in itertools.combinations(hand_val, i) if sum(fifteens) == 15]
-            print(f'Fifteens identified: {scorecard}')
-
+            scorecard_len = len(scorecard)
+            print(f'Combos: {scorecard}')
+            print(f'{scorecard_len} fifteen(s), +{scorecard_len * 2}')
             for i in range(len(scorecard)):
-                print('Fifteen, +2')
                 score += 2
 
+            # ID suits and check for flush
             suits = [suit for card in hand for suit in card[1]]
             for suit in suits:
                 s_quant = suits.count(suits[0])
@@ -53,9 +57,11 @@ class CribbageCalc:
                     break
                 else:
                     pass
-
+                
+            # Print score
             print(f'Your hand is worth {score} points.')
 
+        # ID hand to count
         print('Enter your hand as follows:')
         verify2 = input('ex. King of Clubs, Ace of Clubs as: K C, 1 C or R for random: ')
 
