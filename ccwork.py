@@ -1,16 +1,16 @@
 import random
 import itertools
-import collections
 
 # Goals: start card, nibs/nobs, easier input for pre-determined hand, flushes, runs, pairs/multiples
 # Convert hand to dictionary format, including full text for suits and face names. Use full text to denote suits and values
-# Big-time challenges: optimal peg counting factoring multiple players, percentage likelihood of pre-defined crib (may require complete overhaul)
+
+# Long-term challenges: optimal peg counting factoring multiple players, percentage likelihood of pre-defined crib (may require complete overhaul)
 
 class CribbageCalc:
     def calculate():
         def gen_hand():
-            suits = ['C', 'S', 'H', 'D']
-            values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+            suits = ['Clubs', 'Spades', 'Hearts', 'Diamonds']
+            values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
             deck = [[v, s] for s in suits for v in values]
             hand = []
             hand_len = len(hand)
@@ -21,7 +21,7 @@ class CribbageCalc:
                     hand.append(card)
                     hand_len = len(hand)
             
-            print(hand)
+            print(f'Your hand: {hand}')
             count(hand)
 
         def count(hand):
@@ -29,15 +29,13 @@ class CribbageCalc:
             print('Calculating score...')
             score = 0
             hand_val = []
-            n2 = 0
-            for i in range(len(hand)):
-                value = hand[n2][0]
-                if value.upper() == 'J' or value.upper() == 'Q' or value.upper() == 'K':
+            for value in hand:
+                try:
+                    int(value[0]) == True
+                except:
                     hand_val.append(10)
                 else:
-                    hand_val.append(int(value))
-                n2 += 1
-            print(hand_val)
+                    hand_val.append(int(value[0]))
 
             # Find fifteens
             scorecard = [fifteens for i in range(len(hand_val) + 1) for fifteens in itertools.combinations(hand_val, i) if sum(fifteens) == 15]
@@ -63,7 +61,7 @@ class CribbageCalc:
 
         # ID hand to count
         print('Enter your hand as follows:')
-        verify2 = input('ex. King of Clubs, Ace of Clubs as: K C, 1 C or R for random: ')
+        verify2 = input('ex. King of Clubs, Ace of Clubs as: "K Clubs, 1 Clubs" or "R" for random: ')
 
         if verify2.upper() == 'R':
             gen_hand()
